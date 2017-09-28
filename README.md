@@ -1,4 +1,4 @@
-Dummy CRUD Java EE app with one REST endpoint, one SOAP endpoint, one Entity and one EJB
+Dummy CRUD Java EE app with one REST endpoint, one SOAP endpoint, one Entity and one EJB; all written in Kotlin
 --
 
 To run:
