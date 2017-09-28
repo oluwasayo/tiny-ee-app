@@ -1,14 +1,14 @@
 package com.hextremelabs.tinyeeapp.business
 
 import com.hextremelabs.tinyeeapp.model.Person
-import javax.ejb.Singleton
+import javax.ejb.Stateless
 import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
 
 /**
  * @author oladeji
  */
-@Singleton
+@Stateless
 class PersonBean {
 
   @PersistenceContext
