@@ -16,10 +16,11 @@ class PersonBean {
 
   fun getPerson(id: Long) = em.find(Person::class.java, id)
 
-  fun searchByName(query: String)
-      = em.createNamedQuery("Person.searchByName", Person::class.java).setParameter("query", query).resultList
+  fun searchByName(query: String) = namedQuery<Person>("Person.searchByName").setParameter("query", query).resultList
 
   fun createPerson(person: Person) = person.apply { em.persist(this) }
 
   fun deletePerson(id: Long) = em.remove(em.find(Person::class.java, id))
+
+  private inline fun <reified T> namedQuery(namedQuery: String) = em.createNamedQuery(namedQuery, T::class.java)
 }

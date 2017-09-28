@@ -29,12 +29,10 @@ class PersonRest {
   @GET
   @Path("stuff/{id}")
   @Produces(APPLICATION_JSON, APPLICATION_XML)
-  fun getPerson(@PathParam("id") id: Long): Person {
-    return personBean.getPerson(id)
-  }
+  fun getPerson(@PathParam("id") id: Long) = personBean.getPerson(id)
 
   @GET
-  @Path("stuff/search")
+  @Path("stuff/search/name")
   @Produces(APPLICATION_JSON, APPLICATION_XML)
   fun searchByName(@QueryParam("query") query: String) = personBean.searchByName(query)
 
@@ -47,13 +45,13 @@ class PersonRest {
   @DELETE
   @Path("stuff/{id}")
   @Produces(APPLICATION_JSON, APPLICATION_XML)
-  fun deletePerson(@PathParam("id") id: Long) = Response.ok("Person $id deleted").build().also {
-    personBean.deletePerson(id)
+  fun deletePerson(@PathParam("id") id: Long) = personBean.deletePerson(id).let {
+    Response.ok("Person $id deleted").build()
   }
 }
 
 @ApplicationPath("rpc")
 class ApplicationConfig : Application() {
 
-  override fun getClasses() = mutableSetOf<Class<*>>().apply { this.add(PersonRest::class.java) }
+  override fun getClasses() = setOf<Class<*>>(PersonRest::class.java)
 }

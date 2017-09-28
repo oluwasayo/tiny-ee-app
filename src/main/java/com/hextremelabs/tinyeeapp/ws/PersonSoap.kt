@@ -27,5 +27,5 @@ class PersonSoap {
   fun createPerson(@WebParam(name = "person") person: Person) = personBean.createPerson(person)
 
   @WebMethod(operationName = "deletePerson")
-  fun deletePerson(@WebParam(name = "id") id: Long) = "Person $id deleted".also { personBean.deletePerson(id) }
+  fun deletePerson(@WebParam(name = "id") id: Long) = personBean.deletePerson(id).let { "Person $id deleted" }
 }

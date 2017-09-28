@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement
  */
 @Entity
 @Table(name = "person", indexes = arrayOf(Index(name = "INDEX_person_name", columnList = "name"), Index(name = "INDEX_person_dateOfBirth", columnList = "date_of_birth")), uniqueConstraints = arrayOf(UniqueConstraint(name = "UK_person_email", columnNames = arrayOf("email"))))
-@NamedQueries(NamedQuery(name = "Person.searchByName", query = "SELECT p FROM Person p WHERE p.name LIKE CONCAT('%', :query, '%') ORDER BY p.dateOfBirth DESC"))
+@NamedQueries(NamedQuery(name = "Person.searchByName", query = "SELECT p FROM Person p WHERE LOWER(p.name) LIKE CONCAT('%', LOWER(:query), '%') ORDER BY p.dateOfBirth DESC"))
 @XmlRootElement
 class Person(
 
